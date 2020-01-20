@@ -92,6 +92,20 @@ export default {
         const { $dirty, $error } = this.$v.form[name];
         return $dirty ? !$error : null;
       },
+      makeFailedToast() {
+        this.$bvToast.toast('Spróbuj ponownie później', {
+          title: 'Błąd pobierania danych',
+          variant: 'danger',
+          solid: true
+        })
+      },
+      makeSuccessToast() {
+        this.$bvToast.toast('Spróbuj ponownie później', {
+          title: 'Błąd pobierania danych',
+          variant: 'success',
+          solid: true
+        })
+      },
       showAvatarBlur() {
         if (this.form.avatar) {
           this.showAvatar = true;
@@ -108,8 +122,8 @@ export default {
       .then((response) => {
         this.$log.debug(response.data);
       })
-      .catch(function (error) {
-        this.$log.error(error);
+      .catch(() => {
+        this.makeFailedToast();
       })
       },
       handleOk() {
@@ -117,8 +131,8 @@ export default {
       .then(() => {
         this.$log.debug('Usunięto użytkownika');
       })
-      .catch(function (error) {
-        this.$log.error(error);
+      .catch(() => {
+        this.makeFailedToast();
       })
       }
     },
@@ -132,8 +146,8 @@ export default {
           this.showAvatar = true;
         }
       })
-      .catch(function (error) {
-        this.$log.error(error);
+      .catch(() => {
+        this.makeFailedToast();
       })
     }
 }

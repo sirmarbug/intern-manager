@@ -52,13 +52,20 @@ export default {
           this.rows = response.data.total;
           this.data = response.data.data;
         })
-        .catch(function (error) {
-          this.$log.error(error);
+        .catch(() => {
+          this.makeFailedToast();
         })
     },
     onEditClick(id) {
       this.$log.debug(id);
       this.$router.push(`/intern-edit/${id}`)
+    },
+    makeFailedToast() {
+      this.$bvToast.toast('Spróbuj ponownie później', {
+        title: 'Błąd pobierania danych',
+        variant: 'danger',
+        solid: true
+      })
     }
   },
   mounted() {
@@ -69,8 +76,8 @@ export default {
         this.rows = response.data.total;
         this.data = response.data.data;
       })
-      .catch(function (error) {
-        this.$log.error(error);
+      .catch(() => {
+        this.makeFailedToast();
       })
   }
 }

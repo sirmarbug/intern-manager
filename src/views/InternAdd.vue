@@ -96,6 +96,13 @@ export default {
           this.showAvatar = false;
         }
       },
+      makeSuccessToast() {
+        this.$bvToast.toast('Dane zostały poprawnie dodane do bazy', {
+          title: 'Dodano stażystę',
+          variant: 'success',
+          solid: true
+        })
+      },
       onSubmit() {
         this.$http.post(`https://reqres.in/api/users`, {
           "first_name": this.form.firstName,
@@ -103,10 +110,11 @@ export default {
           "avatar": this.form.avatar
         })
       .then((response) => {
+        this.makeSuccessToast();
         this.$log.debug(response.data);
         this.onReset();
       })
-      .catch(function (error) {
+      .catch(error => {
         this.$log.error(error);
       })
       },
