@@ -1,13 +1,29 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Lista</router-link> |
-      <router-link to="/intern-add">Dodaj</router-link> |
-      <router-link to="/intern-edit">Edytuj</router-link>
-    </div>
-    <router-view/>
+    <b-navbar toggleable="lg" type="dark" variant="info">
+      <b-navbar-brand to="/" :active="activeLink('intern-list')">InternManager</b-navbar-brand>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item :active="activeLink('intern-list')" to="/">Lista stażyestów</b-nav-item>
+          <b-nav-item :active="activeLink('intern-add')" to="/intern-add">Dodaj</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+    <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  name: 'App',
+  methods: {
+    activeLink(name) {
+      return this.$route.name === name;
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -16,18 +32,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
