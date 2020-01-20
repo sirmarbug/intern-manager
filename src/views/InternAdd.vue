@@ -97,12 +97,24 @@ export default {
         }
       },
       onSubmit() {
-        this.$log.debug(this.form);
+        this.$http.post(`https://reqres.in/api/users`, {
+          "first_name": this.form.firstName,
+          "last_name": this.form.lastName,
+          "avatar": this.form.avatar
+        })
+      .then((response) => {
+        this.$log.debug(response.data);
+        this.onReset();
+      })
+      .catch(function (error) {
+        this.$log.error(error);
+      })
       },
       onReset() {
-        this.form.firstName = ''
-        this.form.lastName = ''
-        this.form.avatar = ''
+        this.form.firstName = '';
+        this.form.lastName = '';
+        this.form.avatar = '';
+        this.showAvatar = false;
 
         this.$nextTick(() => {
           this.$v.$reset();
