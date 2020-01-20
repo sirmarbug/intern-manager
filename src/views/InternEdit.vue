@@ -44,6 +44,7 @@
               </div>
               <div class="row mt-3">
                 <div class="col">
+                  <b-button class="mr-3" variant="outline-danger" v-b-modal.modal-1>Usuń</b-button>
                   <b-button type="submit" variant="outline-info">Edytuj</b-button>
                 </div>
               </div>
@@ -52,6 +53,9 @@
         </div>
       </div>
     </div>
+    <b-modal id="modal-1" title="Potwierdź" @ok="handleOk">
+      <p class="my-4">Czy na pewno chcesz usunąć stażystę?</p>
+    </b-modal>
   </div>
 </template>
 
@@ -97,6 +101,9 @@ export default {
       },
       onSubmit() {
         this.$log.debug(this.form);
+      },
+      handleOk() {
+        this.$log.debug('handleOk');
       }
     }
 }
