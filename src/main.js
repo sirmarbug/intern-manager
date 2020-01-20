@@ -5,6 +5,7 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import VueLogger from 'vuejs-logger';
+import Vuelidate from 'vuelidate';
 const isProduction = process.env.NODE_ENV === 'production';
  
 Vue.config.productionTip = false;
@@ -22,6 +23,7 @@ const options = {
 Vue.use(VueLogger, options);
 
 Vue.use(BootstrapVue);
+Vue.use(Vuelidate)
 Vue.use(IconsPlugin);
 
 new Vue({
