@@ -100,11 +100,41 @@ export default {
         }
       },
       onSubmit() {
-        this.$log.debug(this.form);
+        this.$http.put(`https://reqres.in/api/users/${this.$route.params.id}`, {
+          "first_name": this.form.firstName,
+          "last_name": this.form.lastName,
+          "avatar": this.form.avatar
+        })
+      .then((response) => {
+        this.$log.debug(response.data);
+      })
+      .catch(function (error) {
+        this.$log.error(error);
+      })
       },
       handleOk() {
-        this.$log.debug('handleOk');
+        this.$http.delete(`https://reqres.in/api/users/${this.$route.params.id}`)
+      .then(() => {
+        this.$log.debug('Usunięto użytkownika');
+      })
+      .catch(function (error) {
+        this.$log.error(error);
+      })
       }
+    },
+    mounted() {
+      this.$http.get(`https://reqres.in/api/users/${this.$route.params.id}`)
+      .then((response) => {
+        this.form.firstName = response.data.data.first_name,
+        this.form.lastName = response.data.data.last_name,
+        this.form.avatar = response.data.data.avatar
+        if (this.form.avatar) {
+          this.showAvatar = true;
+        }
+      })
+      .catch(function (error) {
+        this.$log.error(error);
+      })
     }
 }
 </script>
