@@ -10,20 +10,16 @@
                   <th scope="col">Imię</th>
                   <th scope="col">Nazwisko</th>
                   <th scope="col">Avatar</th>
-                  <th scope="col">Operacje</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="intern in data" :key="intern.id">
+                <tr v-for="intern in data" :key="intern.id" @click="onEditClick(intern.id)">
                   <th>{{ intern.first_name }}</th>
                   <td>{{ intern.last_name }}</td>
                   <td>
                     <b-img class="avatar"
                       :src="intern.avatar"
                       fluid alt="avatar"></b-img>
-                  </td>
-                  <td>
-                    <b-button variant="outline-primary" class="mr-3" @click="onEditClick(intern.id)">Edytuj</b-button>
                   </td>
                 </tr>
               </tbody>
@@ -83,5 +79,8 @@ export default {
 <style scoped lang="scss">
 .avatar {
   max-width: 100px;
+}
+tr {
+  cursor: pointer;
 }
 </style>
