@@ -14,7 +14,7 @@
               </thead>
               <tbody>
                 <tr v-for="intern in data" :key="intern.id" @click="onEditClick(intern.id)">
-                  <th>{{ intern.first_name }}</th>
+                  <td>{{ intern.first_name }}</td>
                   <td>{{ intern.last_name }}</td>
                   <td>
                     <b-img class="avatar"
@@ -80,7 +80,14 @@ export default {
 .avatar {
   max-width: 100px;
 }
-tr {
-  cursor: pointer;
+
+.table {
+  tr {
+    cursor: pointer;
+  }
+
+  td {
+    vertical-align: middle
+  }
 }
 </style>
