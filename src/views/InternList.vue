@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col">
           <b-card class="mt-3" header="Stażyści">
-            <table class="table">
+            <table class="table" v-if="data.length > 0">
               <thead>
                 <tr>
                   <th scope="col">Imię</th>
@@ -14,16 +14,16 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>Mariusz</th>
-                  <td>Bugajski</td>
+                <tr v-for="intern in data" :key="intern.id">
+                  <th>{{ intern.first_name }}</th>
+                  <td>{{ intern.last_name }}</td>
                   <td>
                     <b-img class="avatar"
-                      :src="'https://bugajsky.pl/wp-content/uploads/2020/01/podsumowanie-grudnia-2019-388x220.png'"
+                      :src="intern.avatar"
                       fluid alt="avatar"></b-img>
                   </td>
                   <td>
-                    <b-button variant="outline-primary" class="mr-3">Edytuj</b-button>
+                    <b-button variant="outline-primary" class="mr-3" @click="onEditClick(intern.id)">Edytuj</b-button>
                   </td>
                 </tr>
               </tbody>
@@ -45,33 +45,37 @@ export default {
       currentPage: 1,
       rows: 12,
       perPage: 6,
-      items: [{
-          age: 40,
-          first_name: 'Dickerson',
-          last_name: 'Macdonald'
-        },
-        {
-          age: 21,
-          first_name: 'Larsen',
-          last_name: 'Shaw'
-        },
-        {
-          age: 89,
-          first_name: 'Geneva',
-          last_name: 'Wilson'
-        },
-        {
-          age: 38,
-          first_name: 'Jami',
-          last_name: 'Carney'
-        }
-      ]
+      data: []
     }
   },
   methods: {
-    changedPage() {
-      this.$log.debug('changedPage');
+    changedPage(event) {
+      this.$http.get(`https://reqres.in/api/users?page=${event}`)
+        .then((response) => {
+          this.perPage = response.data.per_page;
+          this.rows = response.data.total;
+          this.data = response.data.data;
+        })
+        .catch(function (error) {
+          this.$log.error(error);
+        })
+    },
+    onEditClick(id) {
+      this.$log.debug(id);
+      this.$router.push(`/intern-edit/${id}`)
     }
+  },
+  mounted() {
+    this.$http.get('https://reqres.in/api/users?page=1')
+      .then((response) => {
+        this.currentPage = response.data.page;
+        this.perPage = response.data.per_page;
+        this.rows = response.data.total;
+        this.data = response.data.data;
+      })
+      .catch(function (error) {
+        this.$log.error(error);
+      })
   }
 }
 </script>

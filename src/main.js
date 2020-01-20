@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import VueLogger from 'vuejs-logger';
 import Vuelidate from 'vuelidate';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 const isProduction = process.env.NODE_ENV === 'production';
  
 Vue.config.productionTip = false;
@@ -23,8 +25,9 @@ const options = {
 Vue.use(VueLogger, options);
 
 Vue.use(BootstrapVue);
-Vue.use(Vuelidate)
+Vue.use(Vuelidate);
 Vue.use(IconsPlugin);
+Vue.use(VueAxios, axios);
 
 new Vue({
   router,

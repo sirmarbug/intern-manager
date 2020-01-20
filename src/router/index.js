@@ -18,7 +18,7 @@ const routes = [
     component: InternAdd
   },
   {
-    path: '/intern-edit',
+    path: '/intern-edit/:id',
     name: 'intern-edit',
     component: InternEdit
   }
