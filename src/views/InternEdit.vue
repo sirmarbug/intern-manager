@@ -130,6 +130,7 @@ export default {
         this.$http.delete(`https://reqres.in/api/users/${this.$route.params.id}`)
       .then(() => {
         this.$log.debug('Usunięto użytkownika');
+        this.$router.push(`/`)
       })
       .catch(() => {
         this.makeFailedToast();
