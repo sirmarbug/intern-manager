@@ -5,7 +5,7 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item :active="activeLink('intern-list')" to="/">Lista stażyestów</b-nav-item>
+          <b-nav-item :active="activeLink('intern-list')" to="/">Lista stażystów</b-nav-item>
           <b-nav-item :active="activeLink('intern-add')" to="/intern-add">Dodaj</b-nav-item>
         </b-navbar-nav>
       </b-collapse>

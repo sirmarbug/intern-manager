@@ -28,7 +28,7 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <b-form-group id="input-group-avatar" label="Podaj adres do obrazka" label-for="input-avatar">
+                  <b-form-group id="input-group-avatar" label="Adres do obrazka" label-for="input-avatar">
                     <b-form-input id="input-avatar" v-model="$v.form.avatar.$model" type="text" required
                       placeholder="Podaj adres do obrazka" :state="validateState('avatar')"
                       aria-describedby="input-avatar-valid" @blur="showAvatarBlur"></b-form-input>
@@ -44,8 +44,8 @@
               </div>
               <div class="row mt-3">
                 <div class="col">
-                  <b-button class="mr-3" variant="outline-danger" v-b-modal.modal-1>Usuń</b-button>
-                  <b-button type="submit" variant="outline-info">Edytuj</b-button>
+                  <b-button class="mr-3" variant="danger" v-b-modal.modal-1>Usuń stażystę</b-button>
+                  <b-button type="submit" variant="info">Edytuj stażystę</b-button>
                 </div>
               </div>
             </b-form>

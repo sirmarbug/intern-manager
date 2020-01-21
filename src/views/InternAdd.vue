@@ -44,8 +44,8 @@
               </div>
               <div class="row mt-3">
                 <div class="col">
-                  <b-button class="mr-5" type="reset" variant="danger">Wyczyść pola</b-button>
-                  <b-button type="submit" variant="success">Dodaj</b-button>
+                  <b-button class="mr-5" type="reset" variant="danger">Wyczyść formularz</b-button>
+                  <b-button type="submit" variant="success">Dodaj stażystę</b-button>
                 </div>
               </div>
             </b-form>

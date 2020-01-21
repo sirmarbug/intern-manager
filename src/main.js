@@ -8,6 +8,7 @@ import VueLogger from 'vuejs-logger';
 import Vuelidate from 'vuelidate';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import './styles.scss';
 const isProduction = process.env.NODE_ENV === 'production';
  
 Vue.config.productionTip = false;
