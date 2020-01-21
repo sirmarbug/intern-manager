@@ -44,7 +44,9 @@
               </div>
               <div class="row mt-3">
                 <div class="col">
-                  <b-button class="mr-3" variant="danger" v-b-modal.modal-1>Usuń stażystę</b-button>
+                  <b-button variant="danger" v-b-modal.modal-1>Usuń stażystę</b-button>
+                </div>
+                <div class="col">
                   <b-button type="submit" variant="info">Edytuj stażystę</b-button>
                 </div>
               </div>
