@@ -1,5 +1,5 @@
 <template>
-  <div class="intern-edit mb-3">
+  <div class="intern-edit pb-3">
     <div class="container">
       <div class="row">
         <div class="col">
@@ -53,7 +53,7 @@
         </div>
       </div>
     </div>
-    <b-modal id="modal-1" title="Potwierdź" @ok="handleOk">
+    <b-modal id="modal-1" title="Potwierdź" :cancel-title="'Anuluj'" :ok-variant="'danger'" :ok-title="'Potwierdź'" @ok="handleOk">
       <p class="my-4">Czy na pewno chcesz usunąć stażystę?</p>
     </b-modal>
   </div>
@@ -94,14 +94,14 @@ export default {
       },
       makeFailedToast() {
         this.$bvToast.toast('Spróbuj ponownie później', {
-          title: 'Błąd pobierania danych',
+          title: 'Błąd',
           variant: 'danger',
           solid: true
         })
       },
       makeSuccessToast() {
-        this.$bvToast.toast('Spróbuj ponownie później', {
-          title: 'Błąd pobierania danych',
+        this.$bvToast.toast('Poprawnie wykonano operację', {
+          title: 'Potwierdzenie',
           variant: 'success',
           solid: true
         })
@@ -120,6 +120,7 @@ export default {
           "avatar": this.form.avatar
         })
       .then((response) => {
+        this.makeSuccessToast()
         this.$log.debug(response.data);
       })
       .catch(() => {
@@ -128,13 +129,13 @@ export default {
       },
       handleOk() {
         this.$http.delete(`https://reqres.in/api/users/${this.$route.params.id}`)
-      .then(() => {
-        this.$log.debug('Usunięto użytkownika');
-        this.$router.push(`/`)
-      })
-      .catch(() => {
-        this.makeFailedToast();
-      })
+        .then(() => {
+          this.$log.debug('Usunięto użytkownika');
+          this.$router.push(`/`);
+        })
+        .catch(() => {
+          this.makeFailedToast();
+        })
       }
     },
     mounted() {

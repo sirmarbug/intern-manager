@@ -1,5 +1,5 @@
 <template>
-  <div class="intern-list mb-3">
+  <div class="intern-list pb-3">
     <div class="container">
       <div class="row">
         <div class="col">

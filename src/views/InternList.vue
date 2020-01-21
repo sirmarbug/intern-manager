@@ -1,11 +1,11 @@
 <template>
-  <div class="intern-list">
+  <div class="intern-list pb-3">
     <div class="container">
       <div class="row">
         <div class="col">
           <b-card class="mt-3" header="Stażyści">
-            <table class="table" v-if="data.length > 0">
-              <thead>
+            <table class="table table-striped table-bordered table-hover" v-if="data.length > 0">
+              <thead class="thead-dark">
                 <tr>
                   <th scope="col">Imię</th>
                   <th scope="col">Nazwisko</th>
